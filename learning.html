@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -466,7 +466,15 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  const products = [];
+  const products = [
+    {
+      name: "N3Quest",
+      description: "Interactive quizzes and learning.",
+      link: "https://n3quest.vercel.app",
+      icon: "📝",
+      status: "Active"
+    }
+  ];
 
   const grid = document.getElementById('product-grid');
 
