@@ -497,5 +497,15 @@
     });
   }
 </script>
+
+<script>
+  // Mobile back button logic: if arrived from outside, force back button to go to home page
+  if (!document.referrer || !document.referrer.includes(window.location.hostname)) {
+    window.history.pushState({ intercept: true }, "", window.location.href);
+    window.addEventListener("popstate", function () {
+      window.location.href = "index.html";
+    });
+  }
+</script>
 </body>
 </html>
