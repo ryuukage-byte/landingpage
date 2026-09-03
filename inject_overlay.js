@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 
 const files = [
-  'index.html',
   'ai.html',
   'business.html',
   'financial.html',

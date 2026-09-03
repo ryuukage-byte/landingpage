@@ -566,6 +566,13 @@
       link: "https://n3quest.vercel.app",
       icon: "📝",
       status: "Active"
+    },
+    {
+      name: "SevnQuest",
+      description: "Japanese language RPG learning adventure (JLPT N5 - N1).",
+      link: "https://sevnquest.vercel.app/",
+      icon: "⚔️",
+      status: "Active"
     }
   ];
 
@@ -580,7 +587,7 @@
       card.target = prod.link.startsWith('http') ? '_blank' : '_self';
       card.className = 'product-card';
       card.style.animationDelay = (300 + i * 60) + 'ms';
-      card.setAttribute('aria-label', prod.name + ' â€” ' + prod.description);
+      card.setAttribute('aria-label', prod.name + ' — ' + prod.description);
 
       const statusClass = prod.status.toLowerCase().replace(' ', '-');
 
