@@ -1,0 +1,5 @@
+SEVNSOUL Unified V4
+- index.html: premium interactive nametag entry
+- sevnsoul-theme.css: shared visual system for all category/form pages
+- financial/life/business/learning/utilities/media/ai: same layout and styling
+- category/product content preserved from the uploaded HTML pages

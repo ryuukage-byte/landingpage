@@ -3,217 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simple Form — Sevnsoul Style</title>
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
-<link rel="icon" type="image/png" href="/favicon.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="shortcut icon" href="/favicon.ico">
-
+<title>Simple Form — Sevnsoul</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-<style>
-  :root {
-    --bg: #0a0a0a;
-    --bg-soft: #0d0d0d;
-    --surface: #161616;
-    --surface-2: #1e1e1e;
-    --border: rgba(255,255,255,0.07);
-    --border-strong: rgba(255,255,255,0.14);
-    --border-focus: rgba(255,255,255,0.3);
-    --text: #f4f4f2;
-    --text-dim: rgba(244,244,242,0.58);
-    --text-faint: rgba(244,244,242,0.34);
-    --shadow-dark: rgba(0,0,0,0.55);
-    --shadow-light: rgba(255,255,255,0.035);
-    --radius: 16px;
-    --ease: cubic-bezier(.22,1,.36,1);
-    --max: 540px;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', -apple-system, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    padding: 24px;
-  }
-
-  /* ambient texture: faint radial glow */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 800px 600px at 50% -20%, rgba(255,255,255,0.04), transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .wrap {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: var(--max);
-  }
-
-  .form-container {
-    background: linear-gradient(155deg, var(--surface) 0%, var(--surface-2) 100%);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 40px;
-    box-shadow:
-      10px 10px 30px var(--shadow-dark),
-      -8px -8px 20px var(--shadow-light);
-    animation: rise 700ms var(--ease) both;
-  }
-
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(14px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .header {
-    margin-bottom: 36px;
-    text-align: center;
-  }
-
-  .header h1 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 500;
-    font-size: 28px;
-    letter-spacing: -0.01em;
-    margin-bottom: 8px;
-  }
-
-  .header p {
-    font-size: 14.5px;
-    color: var(--text-dim);
-    line-height: 1.6;
-  }
-
-  .form-group {
-    margin-bottom: 24px;
-  }
-
-  .form-group label {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.05em;
-    color: var(--text-dim);
-    margin-bottom: 10px;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  textarea {
-    width: 100%;
-    background: var(--bg-soft);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    padding: 14px 16px;
-    border-radius: 12px;
-    transition: all 300ms var(--ease);
-    outline: none;
-  }
-
-  textarea {
-    resize: vertical;
-    min-height: 120px;
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    color: var(--text-faint);
-  }
-
-  input:hover,
-  textarea:hover {
-    border-color: var(--border-strong);
-  }
-
-  input:focus,
-  textarea:focus {
-    border-color: var(--border-focus);
-    background: var(--surface);
-    box-shadow: 0 0 0 4px rgba(255,255,255,0.02);
-  }
-
-  button {
-    width: 100%;
-    background: var(--text);
-    color: var(--bg);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    border: none;
-    padding: 16px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 300ms var(--ease);
-    margin-top: 12px;
-  }
-
-  button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(255,255,255,0.15);
-  }
-
-  button:active {
-    transform: translateY(0) scale(0.99);
-  }
-
-  @media (max-width: 480px) {
-    .form-container {
-      padding: 30px 24px;
-    }
-    .header h1 {
-      font-size: 24px;
-    }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="sevnsoul-theme.css">
 </head>
 <body>
-
 <div class="wrap">
-  <div class="form-container">
-    <div class="header">
+  <header class="site-header">
+    <a class="back-link" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      <span>Home</span>
+    </a>
+    <a class="brand" href="index.html">
+      <img class="brand-mark" src="favicon-transparent.png" alt="Sevnsoul">
+      <span class="brand-name">SEVNSOUL</span>
+    </a>
+    <span class="header-code">SVN / FORM</span>
+  </header>
+
+  <main class="form-page">
+    <section class="form-shell">
+      <div class="eyebrow">SEVNSOUL / INPUT</div>
       <h1>Isi Data Anda</h1>
-      <p>Silakan lengkapi formulir di bawah ini dengan informasi yang sesuai.</p>
+      <p class="intro">Silakan lengkapi formulir di bawah ini dengan informasi yang sesuai.</p>
+
+      <form action="#" method="POST">
+        <div class="form-group">
+          <label for="name">NAMA LENGKAP</label>
+          <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
+        </div>
+        <div class="form-group">
+          <label for="email">ALAMAT EMAIL</label>
+          <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="message">PESAN (OPSIONAL)</label>
+          <textarea id="message" name="message" placeholder="Tuliskan pesan Anda di sini..."></textarea>
+        </div>
+        <button class="submit-btn" type="submit">Kirim Sekarang</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <img class="footer-mark" src="favicon-transparent.png" alt="">
+      <span>SEVNSOUL · <span id="year"></span></span>
     </div>
-
-    <form action="#" method="POST">
-      <div class="form-group">
-        <label for="name">NAMA LENGKAP</label>
-        <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
-      </div>
-
-      <div class="form-group">
-        <label for="email">ALAMAT EMAIL</label>
-        <input type="email" id="email" name="email" placeholder="nama@email.com" required>
-      </div>
-
-      <div class="form-group">
-        <label for="message">PESAN (OPSIONAL)</label>
-        <textarea id="message" name="message" placeholder="Tuliskan pesan Anda di sini..."></textarea>
-      </div>
-
-      <button type="submit">Kirim Sekarang</button>
-    </form>
-  </div>
+    <span>Ideas, Built.</span>
+  </footer>
 </div>
-
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
