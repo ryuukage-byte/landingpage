@@ -670,9 +670,9 @@ a{color:inherit;text-decoration:none}
   align-items:center;
   justify-content:space-between;
   gap:20px;
-  color:rgba(244,244,242,.30);
+  color:rgba(244,244,242,.50);
   font-family:"JetBrains Mono",monospace;
-  font-size:8px;
+  font-size:10px;
   letter-spacing:.15em;
   text-transform:uppercase;
 }
@@ -755,7 +755,7 @@ a{color:inherit;text-decoration:none}
 }
 
 .cat-card.featured .cat-top{
-  display:block;
+  display:contents;
 }
 
 .cat-icon{
@@ -783,7 +783,7 @@ a{color:inherit;text-decoration:none}
   height:29px;
   display:grid;
   place-items:center;
-  color:rgba(244,244,242,.28);
+  color:rgba(244,244,242,.5);
   transition:
     transform 320ms cubic-bezier(.22,1,.36,1),
     color 260ms ease;
@@ -806,8 +806,8 @@ a{color:inherit;text-decoration:none}
 
 .cat-name{
   font-family:"Space Grotesk",sans-serif;
-  font-size:21px;
-  line-height:1.05;
+  font-size:22px;
+  line-height:1.1;
   font-weight:500;
   letter-spacing:-.025em;
   color:rgba(244,244,242,.92);
@@ -816,8 +816,8 @@ a{color:inherit;text-decoration:none}
 .cat-focus{
   margin-top:10px;
   max-width:36ch;
-  color:rgba(244,244,242,.42);
-  font-size:12.5px;
+  color:rgba(244,244,242,.62);
+  font-size:13.5px;
   line-height:1.68;
 }
 
@@ -831,7 +831,9 @@ a{color:inherit;text-decoration:none}
 
 .cat-card.featured .cat-arrow{
   align-self:center;
+  order:3;
 }
+.cat-card.featured .cat-body{order:2}
 
 /* footer uses the same "technical label" language instead of a separate footer style */
 .lower-footer{
@@ -842,9 +844,9 @@ a{color:inherit;text-decoration:none}
   align-items:center;
   justify-content:space-between;
   gap:18px;
-  color:rgba(244,244,242,.28);
+  color:rgba(244,244,242,.50);
   font-family:"JetBrains Mono",monospace;
-  font-size:8px;
+  font-size:10px;
   letter-spacing:.14em;
   text-transform:uppercase;
 }
@@ -1227,6 +1229,13 @@ a{color:inherit;text-decoration:none}
   transform:translateY(1px);
 }
 
+
+/* accessibility */
+.cat-card:focus-visible{outline:2px solid rgba(255,255,255,.7);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
 </style>
 </head>
 

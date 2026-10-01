@@ -6,8 +6,8 @@
   --surface-2:#171717;
   --surface-3:#1e1e1e;
   --text:#f4f4f2;
-  --text-dim:rgba(244,244,242,.58);
-  --text-faint:rgba(244,244,242,.34);
+  --text-dim:rgba(244,244,242,.68);
+  --text-faint:rgba(244,244,242,.50);
   --border:rgba(255,255,255,.075);
   --border-strong:rgba(255,255,255,.145);
   --metal:#d8d9d7;
@@ -56,7 +56,7 @@ button,input,textarea{font:inherit}
   gap:9px;
   color:var(--text-dim);
   font-family:'JetBrains Mono',monospace;
-  font-size:10px;
+  font-size:11px;
   letter-spacing:.12em;
   text-transform:uppercase;
   transition:color .25s ease,transform .25s var(--ease);
@@ -81,9 +81,9 @@ button,input,textarea{font:inherit}
 .header-code{
   justify-self:end;
   font-family:'JetBrains Mono',monospace;
-  font-size:9px;
+  font-size:10px;
   letter-spacing:.12em;
-  color:var(--text-faint);
+  color:var(--text-dim);
   text-transform:uppercase;
 }
 
@@ -104,9 +104,9 @@ button,input,textarea{font:inherit}
   gap:10px;
   margin-bottom:22px;
   font-family:'JetBrains Mono',monospace;
-  font-size:9px;
+  font-size:11px;
   letter-spacing:.18em;
-  color:var(--text-faint);
+  color:var(--text-dim);
   text-transform:uppercase;
 }
 .eyebrow::before{
@@ -125,9 +125,9 @@ button,input,textarea{font:inherit}
   margin-top:24px;
   max-width:620px;
   color:var(--text-dim);
-  font-size:15px;
+  font-size:16px;
   line-height:1.75;
-  font-weight:300;
+  font-weight:400;
 }
 .hero-index{
   min-width:108px;
@@ -153,7 +153,7 @@ button,input,textarea{font:inherit}
   margin-bottom:18px;
   color:var(--text-faint);
   font-family:'JetBrains Mono',monospace;
-  font-size:9px;
+  font-size:10px;
   letter-spacing:.14em;
   text-transform:uppercase;
 }
@@ -217,7 +217,7 @@ button,input,textarea{font:inherit}
   border:1px solid var(--border);
   border-radius:999px;
   font-family:'JetBrains Mono',monospace;
-  font-size:8px;
+  font-size:10px;
   letter-spacing:.12em;
   text-transform:uppercase;
   color:var(--text-dim);
@@ -243,7 +243,7 @@ button,input,textarea{font:inherit}
   margin-top:11px;
   max-width:48ch;
   color:var(--text-dim);
-  font-size:13.5px;
+  font-size:14.5px;
   line-height:1.65;
 }
 .prod-footer{
@@ -254,7 +254,7 @@ button,input,textarea{font:inherit}
   display:flex;align-items:center;justify-content:space-between;
   color:var(--text-faint);
   font-family:'JetBrains Mono',monospace;
-  font-size:8px;
+  font-size:10px;
   letter-spacing:.11em;
   text-transform:uppercase;
 }
@@ -299,7 +299,7 @@ button,input,textarea{font:inherit}
   gap:18px;
   color:var(--text-faint);
   font-family:'JetBrains Mono',monospace;
-  font-size:9px;
+  font-size:10px;
   letter-spacing:.12em;
   text-transform:uppercase;
 }
@@ -428,6 +428,12 @@ button,input,textarea{font:inherit}
 }
 .submit-btn:hover{transform:translateY(-2px);opacity:.94}
 
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid rgba(255,255,255,.7);outline-offset:3px}
+.product-card:focus-visible{outline-offset:4px}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
 @media(max-width:760px){
   .wrap{padding:0 18px}
   .site-header{grid-template-columns:1fr auto;padding-top:24px}
