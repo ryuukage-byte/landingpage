@@ -117,7 +117,7 @@ Satu layar penuh (`100vh`), tanpa scroll. Lapisan dari belakang ke depan:
 6. **Kolom pencarian**: di bawah kaki karakter.
 7. **Sudut**: wordmark (kiri bawah); tautan lab dan tombol "Kurangi gerak" (kanan bawah). Muncul bersama kolom pencarian.
 
-Tidak ada tautan ke lab/studio di situs live. Animasi dan ikon dicek di SevnSoul Character Studio (`C:projectsevnsoul-character-studio`: AnimationGallery, CharacterSheet).
+Tidak ada tautan ke lab/studio di situs live. Animasi dan ikon dicek di SevnSoul Character Studio (`C:/project/sevnsoul-character-studio`: AnimationGallery, CharacterSheet).
 
 ## 7. Spesifikasi visual
 
