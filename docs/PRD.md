@@ -10,7 +10,7 @@
 - Saran berupa bubble yang **mengorbit** karakter (kiri, kiri atas, atas, kanan atas, kanan), bukan baris chip.
 - Saat mengetik karakter **menunggu** (animasi mengetik dihapus dari alur).
 - Setelah Enter: animasi **mencari** 1–3 dtk → **melompat → menarik banner turun dari atas** (banner tidak terlihat sebelum ditarik).
-- Lab dan ikon dipindah ke `lab.html`.
+- Lab animasi tidak ditampilkan di situs live; animasi dicek di SevnSoul Character Studio (proyek Remotion terpisah).
 
 ### v0.2: perbaikan dari v0.1
 
@@ -117,7 +117,7 @@ Satu layar penuh (`100vh`), tanpa scroll. Lapisan dari belakang ke depan:
 6. **Kolom pencarian**: di bawah kaki karakter.
 7. **Sudut**: wordmark (kiri bawah); tautan lab dan tombol "Kurangi gerak" (kanan bawah). Muncul bersama kolom pencarian.
 
-Lab animasi dan galeri ikon ada di `lab.html`, terpisah dari landing.
+Tidak ada tautan ke lab/studio di situs live. Animasi dan ikon dicek di SevnSoul Character Studio (`C:projectsevnsoul-character-studio`: AnimationGallery, CharacterSheet).
 
 ## 7. Spesifikasi visual
 

@@ -5,9 +5,8 @@ Satu adegan: karakter pixel menyambut pengunjung, mencari tujuan, lalu melompat 
 | Path | Isi |
 |---|---|
 | `index.html` | Landing (HTML + CSS) |
-| `lab.html` | Lab animasi, sprite sheet, galeri ikon |
 | `public/landing.js` | Sutradara adegan (intro, pencarian, lompat, banner, idle) |
-| `public/sprite.js` | Renderer + animasi karakter (prosedural, tanpa gambar) |
+| `public/sprite.js` | Renderer + animasi karakter (prosedural, tanpa gambar). Animasi dicek di Character Studio (`C:\project\sevnsoul-character-studio`), bukan di situs |
 | `public/content.js` | **Data tujuan** + pencarian kata kunci — edit di sini untuk menambah produk |
 | `public/icons.js` | Ikon pixel 12×12 |
 | `docs/` | PRD, DESIGN, CHARACTER, CONTENT, ICONS |

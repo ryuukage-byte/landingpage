@@ -49,6 +49,15 @@
     pullDown: { r: [[0, -1, 3, 2], [1, -3, 3, 3], [0, -5, 3, 3]], h: [-1, -7, 3, 2] },
     flail: { r: [[0, -2, 3, 3], [2, -4, 3, 3]], h: [4, -5, 2, 2] },
     chin: { r: [[0, 0, 3, 3], [-2, -3, 3, 4]], h: [-4, -5, 3, 2] },
+    // Gesture set for motion graphics (inward = negative x for both arms).
+    point: { r: [[0, 0, 3, 3], [2, -1, 5, 3]], h: [7, -1, 3, 2] },          // index finger forward-up
+    thumb: { r: [[0, 0, 3, 4], [1, 2, 3, 3]], h: [2, -1, 2, 4] },           // fist with thumb up
+    clapA: { r: [[0, 0, 3, 3], [-3, 2, 3, 3], [-5, 3, 3, 2]], h: [-7, 3, 3, 2] }, // hands meet at the centre
+    clapB: { r: [[0, 0, 3, 3], [-3, 2, 3, 3]], h: [-5, 3, 2, 2] },          // hands a little apart
+    shrug: { r: [[0, 0, 3, 3], [2, 2, 3, 2]], h: [4, 0, 3, 2] },            // palm up, out to the side
+    hip: { r: [[0, 0, 3, 3], [2, 2, 3, 3], [0, 5, 3, 2]], h: [-1, 6, 2, 2] }, // hand on hip, elbow out
+    belly: { r: [[0, 0, 3, 4], [-2, 4, 3, 2]], h: [-4, 5, 2, 2] },          // hands on the stomach
+    facepalm: { r: [[0, -1, 3, 3], [-2, -3, 3, 3], [-4, -5, 3, 3]], h: [-5, -7, 3, 3] }, // palm over the eye
   };
 
   const BASE = { hip: 0, br: 0, bx: 0, hx: 0, hy: 0, air: 0, bowHair: 0, eyeDx: 1,
@@ -189,6 +198,37 @@
         break;
       case 'dots':
         for (let k = 0; k < 3; k++) R(ox + 13 + 3 * k, oy - 4, 2, 2, k === f ? C.W : C.G);
+        break;
+      case 'zzz': {   // two Zs drifting up, f = 0..2
+        const z = (x, y, c) => { R(x, y, 4, 1, c); R(x + 2, y + 1, 1, 1, c); R(x + 1, y + 2, 1, 1, c); R(x, y + 3, 4, 1, c); };
+        z(ox + 20, oy + 2 - f, C.L);
+        if (f > 0) z(ox + 24, oy - 4 - f, f === 2 ? C.W : C.G);
+        break;
+      }
+      case 'note': {  // music notes either side, bobbing with f
+        const n = (x, y, c) => { R(x + 2, y, 1, 4, c); R(x, y + 3, 2, 2, c); R(x + 3, y, 1, 1, c); };
+        n(ox - 6, oy + 4 - (f ? 2 : 0), C.L);
+        n(ox + 22, oy + 2 - (f ? 0 : 2), C.W);
+        break;
+      }
+      case 'heart': { // pink hearts rising, f = 0..2
+        const h = (x, y, c) => { R(x, y, 2, 1, c); R(x + 3, y, 2, 1, c); R(x, y + 1, 5, 1, c); R(x + 1, y + 2, 3, 1, c); R(x + 2, y + 3, 1, 1, c); };
+        h(ox + 19, oy - 1 - 2 * f, C.BL);
+        if (f) h(ox - 5, oy + 5 - 2 * f, C.BL);
+        break;
+      }
+      case 'question': // "?" above the head, nudging with f
+        R(ox + 20, oy - 6 + f, 3, 1, C.W); R(ox + 22, oy - 5 + f, 1, 1, C.W); R(ox + 21, oy - 4 + f, 1, 1, C.W);
+        R(ox + 21, oy - 2 + f, 1, 1, C.W);
+        break;
+      case 'anger': {  // anime anger mark on the forehead, pulsing with f
+        const a = f ? 1 : 0, x = ox + 15 - a, y = oy + 1 - a, e = 2 * a;
+        R(x + 1, y, 1, 1, C.MR); R(x + 3 + e, y, 1, 1, C.MR); R(x, y + 1, 1, 1, C.MR); R(x + 4 + e, y + 1, 1, 1, C.MR);
+        R(x, y + 3 + e, 1, 1, C.MR); R(x + 4 + e, y + 3 + e, 1, 1, C.MR); R(x + 1, y + 4 + e, 1, 1, C.MR); R(x + 3 + e, y + 4 + e, 1, 1, C.MR);
+        break;
+      }
+      case 'sweat':    // a drop sliding down the temple
+        R(ox + 20, oy + 4 + f, 1, 1, C.L); R(ox + 19, oy + 5 + f, 3, 2, C.L); R(ox + 20, oy + 7 + f, 1, 1, C.W);
         break;
     }
 
@@ -364,6 +404,79 @@
     F(240, { armR: 'out', mouth: 'smile', ev: 'release' }),
     F(160, { mouth: 'smile' })] };
 
+  // ---------- Expressions & gestures (motion graphics set) ----------
+  // Talking: mouth shapes cycle under a small beat of the head and an explaining hand.
+  A.talk = { loop: true, frames: [
+    F(110, { mouth: 'open', armR: 'front' }), F(90, { mouth: 'smile', armR: 'front', hy: 1 }),
+    F(120, { mouth: 'o', armR: 'sF' }), F(90, { mouth: 'none', armR: 'sF' }),
+    F(110, { mouth: 'open', armR: 'shrug' }), F(140, { mouth: 'smile', armR: 'shrug', hy: 1 })] };
+  // Presenting: one open palm out to the side, chatty.
+  A.present = { lag: true, frames: [
+    F(100, { armR: 'sF' }), F(120, { armR: 'shrug', mouth: 'smile' }),
+    F(600, { armR: 'shrug', mouth: 'open', eyes: 'happy' }), F(400, { armR: 'shrug', mouth: 'smile' }), F(120, { armR: 'sF' })] };
+  A.point = { lag: true, frames: [
+    F(90, { bx: -1, armR: 'sB' }), F(80, { armR: 'out', eyes: 'wide' }),
+    F(700, { bx: 1, armR: 'point', mouth: 'open', eyeDx: 2 }), F(300, { bx: 1, armR: 'point', mouth: 'smile', eyeDx: 2 }), F(120, { armR: 'sF' })] };
+  A.nod = { frames: [
+    F(90, { hy: 1, eyes: 'half' }), F(110, { hy: 2, eyes: 'closed', mouth: 'smile' }), F(90, { hy: 0, mouth: 'smile' }),
+    F(110, { hy: 2, eyes: 'closed', mouth: 'smile' }), F(250, { hy: 0, mouth: 'smile' })] };
+  A.shake = { frames: [
+    F(100, { hx: -1, eyeDx: 0, mouth: 'frown' }), F(100, { hx: 1, eyeDx: 2, mouth: 'frown' }),
+    F(100, { hx: -1, eyeDx: 0, mouth: 'frown' }), F(100, { hx: 1, eyeDx: 2, mouth: 'frown' }), F(250, { eyes: 'half', mouth: 'frown' })] };
+  A.thumbsUp = { lag: true, frames: [
+    F(90, { hip: 1, armR: 'sF' }), F(80, { armR: 'thumb', hip: -1 }),
+    F(500, { armR: 'thumb', eyes: 'happy', mouth: 'smile', fx: 'sparkle', fxf: 0 }),
+    F(400, { armR: 'thumb', eyes: 'happy', mouth: 'smile', fx: 'sparkle', fxf: 1 }), F(140, { armR: 'sF', mouth: 'smile' })] };
+  A.clap = { loop: true, lag: true, frames: [
+    F(110, { armL: 'clapB', armR: 'clapB', eyes: 'happy', mouth: 'open' }),
+    F(90, { armL: 'clapA', armR: 'clapA', eyes: 'happy', mouth: 'open', hip: 1 }),
+    F(110, { armL: 'clapB', armR: 'clapB', eyes: 'happy', mouth: 'smile' }),
+    F(90, { armL: 'clapA', armR: 'clapA', eyes: 'happy', mouth: 'smile', hip: 1 })] };
+  A.shrug = { lag: true, frames: [
+    F(100, { armL: 'sF', armR: 'sF' }), F(120, { armL: 'shrug', armR: 'shrug', br: -1, hy: -1, eyes: 'half' }),
+    F(800, { armL: 'shrug', armR: 'shrug', br: -1, hy: -1, eyes: 'half', fx: 'question', fxf: 0 }),
+    F(200, { armL: 'shrug', armR: 'shrug', eyes: 'half', fx: 'question', fxf: 1 }), F(140, {})] };
+  A.facepalm = { lag: true, frames: [
+    F(100, { armR: 'chin', eyes: 'half' }), F(90, { armR: 'facepalm', hy: 1, eyes: 'closed' }),
+    F(900, { armR: 'facepalm', hy: 1, br: 1, eyes: 'closed', mouth: 'frown', fx: 'gloom', fxf: 0 }),
+    F(300, { armR: 'facepalm', hy: 1, br: 1, eyes: 'closed', mouth: 'frown', fx: 'gloom', fxf: 1 }), F(160, { eyes: 'half' })] };
+  A.sleep = { loop: true, frames: [
+    F(700, { eyes: 'closed', hy: 1, br: 1, fx: 'zzz', fxf: 0 }), F(500, { eyes: 'closed', hy: 2, br: 1, fx: 'zzz', fxf: 1 }),
+    F(700, { eyes: 'closed', hy: 2, br: 1, mouth: 'o', fx: 'zzz', fxf: 2 }), F(400, { eyes: 'closed', hy: 1, fx: 'zzz', fxf: 1 })] };
+  A.dance = { loop: true, lag: true, frames: [
+    F(120, { hip: 1, bx: -1, L: { lift: 2 }, armL: 'up', armR: 'shrug', eyes: 'happy', mouth: 'smile', fx: 'note', fxf: 0 }),
+    F(120, { hip: -1, armL: 'upOut', armR: 'sF', eyes: 'happy', mouth: 'open', fx: 'note', fxf: 0 }),
+    F(120, { hip: 1, bx: 1, R: { lift: 2 }, armL: 'shrug', armR: 'up', eyes: 'happy', mouth: 'smile', fx: 'note', fxf: 1 }),
+    F(120, { hip: -1, armL: 'sF', armR: 'upOut', eyes: 'happy', mouth: 'open', fx: 'note', fxf: 1 })] };
+  A.love = { lag: true, frames: [
+    F(100, { armL: 'clapB', armR: 'clapB', eyes: 'happy' }),
+    ...[0, 1, 2].map(k => F(260, { armL: 'clapA', armR: 'clapA', eyes: 'happy', mouth: 'smile', br: k % 2, fx: 'heart', fxf: k })),
+    F(300, { armL: 'clapB', armR: 'clapB', eyes: 'happy', mouth: 'smile', fx: 'heart', fxf: 2 }), F(140, { mouth: 'smile' })] };
+  A.confused = { frames: [
+    F(120, { eyeDx: 0, hx: -1 }), F(500, { eyeDx: 0, hx: -1, mouth: 'o', fx: 'question', fxf: 0 }),
+    F(500, { eyeDx: 2, hx: 1, mouth: 'o', armR: 'chin', fx: 'question', fxf: 1 }),
+    F(300, { eyeDx: 1, armR: 'chin', eyes: 'half', fx: 'question', fxf: 0 }), F(140, {})] };
+  A.laugh = { loop: true, lag: true, frames: [
+    F(110, { armL: 'belly', armR: 'belly', eyes: 'happy', mouth: 'open', br: 1, fx: 'joy', fxf: 0 }),
+    F(90, { armL: 'belly', armR: 'belly', eyes: 'happy', mouth: 'smile', hip: 1, br: 1, fx: 'joy', fxf: 1 }),
+    F(110, { armL: 'belly', armR: 'belly', eyes: 'happy', mouth: 'open', br: 1, fx: 'joy', fxf: 0 }),
+    F(90, { armL: 'belly', armR: 'belly', eyes: 'happy', mouth: 'smile', fx: 'joy', fxf: 1 })] };
+  A.angry = { lag: true, frames: [
+    F(90, { armL: 'sF', armR: 'sF', eyes: 'down' }), F(80, { armL: 'hip', armR: 'hip', hip: 1, eyes: 'down', mouth: 'frown' }),
+    F(300, { armL: 'hip', armR: 'hip', eyes: 'down', mouth: 'frown', fx: 'anger', fxf: 0 }),
+    F(300, { armL: 'hip', armR: 'hip', eyes: 'down', mouth: 'frown', fx: 'anger', fxf: 1 }),
+    F(300, { armL: 'hip', armR: 'hip', eyes: 'down', mouth: 'frown', fx: 'anger', fxf: 0 }), F(140, { eyes: 'half' })] };
+  A.nervous = { loop: true, frames: [
+    F(200, { eyes: 'wide', mouth: 'o', armL: 'belly', armR: 'belly', eyeDx: 0, fx: 'sweat', fxf: 0 }),
+    F(200, { eyes: 'wide', mouth: 'o', armL: 'belly', armR: 'belly', eyeDx: 2, fx: 'sweat', fxf: 1 }),
+    F(200, { eyes: 'wide', mouth: 'frown', armL: 'belly', armR: 'belly', eyeDx: 0, hx: -1, fx: 'sweat', fxf: 2 }),
+    F(200, { eyes: 'half', mouth: 'frown', armL: 'belly', armR: 'belly', eyeDx: 1, fx: 'sweat', fxf: 3 })] };
+  A.cheer = { lag: true, frames: [
+    F(100, { hip: 2, br: 1, armL: 'knees', armR: 'knees' }),
+    ...[-4, -8, -10, -8, -4].map(air => F(60, { air, armL: 'up', armR: 'up', eyes: 'happy', mouth: 'open', L: { lift: 2 }, R: { lift: 2 }, fx: 'sparkle', fxf: air < -7 ? 1 : 0 })),
+    F(90, { hip: 2, br: 1, armL: 'upOut', armR: 'upOut', eyes: 'happy', mouth: 'open' }),
+    F(400, { armL: 'upOut', armR: 'upOut', eyes: 'happy', mouth: 'open', fx: 'joy', fxf: 1 }), F(140, { mouth: 'smile' })] };
+
   // Head follows body with a one-frame delay (follow-through), clamped to 1px.
   for (const name in A) {
     const a = A[name];
@@ -390,6 +503,10 @@
     typing: 'Mengetik', found: 'Ketemu', pull: 'Tarik banner', wave: 'Lambai', lookL: 'Lihat kiri', lookR: 'Lihat kanan',
     crouch: 'Jongkok', interact: 'Interaksi', happy: 'Senang', surprised: 'Kaget', sad: 'Sedih',
     search: 'Mencari', grabJump: 'Lompat ambil banner', ceilingJump: 'Lompat ke langit-langit', stretch: 'Menguap / peregangan',
+    talk: 'Bicara', present: 'Presentasi', point: 'Menunjuk', nod: 'Mengangguk', shake: 'Menggeleng',
+    thumbsUp: 'Jempol', clap: 'Tepuk tangan', shrug: 'Angkat bahu', facepalm: 'Tepuk jidat', sleep: 'Tidur',
+    dance: 'Menari', love: 'Suka / hati', confused: 'Bingung', laugh: 'Tertawa', angry: 'Marah', nervous: 'Gugup',
+    cheer: 'Bersorak',
   };
 
   // Top of the hands relative to the ground row (includes air) — where a held object sits.
