@@ -1,6 +1,6 @@
 # CHARACTER.md — Maskot SevnSoul v0.2
 
-Implementasi acuan: `playground/sprite.js` (renderer prosedural + state machine). Lab interaktif ada di bagian **Karakter** pada `playground/index.html`.
+Implementasi acuan: `sprite.js` (renderer prosedural + state machine). Pratinjau semua animasi: SevnSoul Character Studio (`C:/project/sevnsoul-character-studio`, komposisi AnimationGallery dan CharacterSheet). Situs live tidak menampilkan lab.
 
 ## 1. Profil
 
@@ -79,7 +79,31 @@ Bagian tubuh (koordinat relatif anchor, y negatif = ke atas):
 | `surprised` | Kaget | 5 | 1000 ms | | C | Hop 3 px, "!", mulut "o" |
 | `walkStop` / `runStop` | (transisi) | 2 / 4 | 220 / 360 ms | | otomatis | Disisipkan oleh `play()` |
 
-Total: 21 animasi + 2 transisi, 149 frame sebelum dedup.
+### Ekspresi & gestur (untuk video motion graphic)
+
+Tidak dipakai landing; disiapkan untuk SevnSoul Character Studio (Remotion). Efek baru di `fx`: `zzz`, `note`, `heart`, `question`, `anger`, `sweat`. Pose lengan baru: `point`, `thumb`, `clapA`/`clapB`, `shrug`, `hip`, `belly`, `facepalm`.
+
+| ID | Label | Frame | Total | Loop |
+|---|---|---|---|---|
+| `talk` | Bicara | 6 | 660 ms | ✓ |
+| `present` | Presentasi | 5 | 1340 ms |  |
+| `point` | Menunjuk | 5 | 1290 ms |  |
+| `nod` | Mengangguk | 5 | 650 ms |  |
+| `shake` | Menggeleng | 5 | 650 ms |  |
+| `thumbsUp` | Jempol | 5 | 1210 ms |  |
+| `clap` | Tepuk tangan | 4 | 400 ms | ✓ |
+| `shrug` | Angkat bahu | 5 | 1360 ms |  |
+| `facepalm` | Tepuk jidat | 5 | 1550 ms |  |
+| `sleep` | Tidur | 4 | 2300 ms | ✓ |
+| `dance` | Menari | 4 | 480 ms | ✓ |
+| `love` | Suka / hati | 6 | 1320 ms |  |
+| `confused` | Bingung | 5 | 1560 ms |  |
+| `laugh` | Tertawa | 4 | 400 ms | ✓ |
+| `angry` | Marah | 6 | 1210 ms |  |
+| `nervous` | Gugup | 4 | 800 ms | ✓ |
+| `cheer` | Bersorak | 9 | 1030 ms |  |
+
+Total: 38 animasi + 2 transisi, 236 frame sebelum dedup.
 
 ## 6. State machine (landing v0.4)
 
